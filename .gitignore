@@ -1,0 +1,25 @@
+# Папки, которые не нужны в репозитории
+bin/
+obj/
+out/
+TestResults/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Конфигурационные файлы
+appsettings*.json
+secrets.json
+
+# Логи и кеш
+*.log
+logs/
+*.cache
+*.vs/
+.vscode/
+
+# Пакеты и зависимости
+packages/
+node_modules/

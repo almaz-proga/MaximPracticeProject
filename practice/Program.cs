@@ -13,14 +13,30 @@ namespace practice
             string symbols = "abcdefghijklmnopqrstuvwxyz";
             invalidchars = new List<char>();
 
-            foreach(char chars in word)
+            foreach (char chars in word)
             {
-                if(!symbols.Contains(chars) && !invalidchars.Contains(chars))
+                if (!symbols.Contains(chars) && !invalidchars.Contains(chars))
                 {
                     invalidchars.Add(chars);
                 }
             }
             return invalidchars.Count() == 0;
+        }
+        static Dictionary<char, int> CharCount(string word)
+        {
+            Dictionary<char, int> charcount = new Dictionary<char, int>();
+            foreach(char c in word)
+            {
+                if (charcount.ContainsKey(c))
+                {
+                    charcount[c]++;
+                }
+                else
+                {
+                    charcount[c] = 1;
+                }
+            }
+            return charcount;
         }
         static void Main(string[] args)
         {
@@ -50,12 +66,17 @@ namespace practice
                     }
                     newword += word;
                 }
-                Console.WriteLine(newword);
+                Console.WriteLine($"обработанная строка: {newword}");
+                var charcount = CharCount(newword);
+                foreach (var pair in charcount)
+                {
+                    Console.WriteLine($"{pair.Key}: {pair.Value}");
+                }
 
             }
             else
             {
-                Console.WriteLine("В строке содержатся недопустимые символы: " + string.Join(" ,", invalidchars));
+                Console.WriteLine("В строке содержатся недопустимые символы: " + string.Join(", ", invalidchars));
     
             }
 

@@ -38,6 +38,34 @@ namespace practice
             }
             return charcount;
         }
+        static string MaxSubstring(string word)
+        {
+            int start = -1;
+            int end = -1;
+            string allowedchar = "aeiouy";
+            string result = null;
+            for (int i = 0; i < word.Length; i++)
+            {
+                if (allowedchar.Contains(word[i]) && start == -1)
+                {
+                    start = i;
+                    end = i;
+                }
+                else if (allowedchar.Contains(word[i]) && start != -1)
+                {
+                    end = i;
+                }
+            }
+            if(start == -1 && end == -1)
+            {
+                result = "В данной строке нет подходящей подстроки! ";
+            }
+            else
+            {
+                result = word.Substring(start, end - start + 1);
+            }
+            return result;
+        }
         static void Main(string[] args)
         {
             Console.Write("Введите строку: ");
@@ -68,10 +96,13 @@ namespace practice
                 }
                 Console.WriteLine($"обработанная строка: {newword}");
                 var charcount = CharCount(newword);
+                Console.WriteLine("Кол-во повторяющихся символов: ");
                 foreach (var pair in charcount)
                 {
                     Console.WriteLine($"{pair.Key}: {pair.Value}");
                 }
+                string result = MaxSubstring(newword);
+                Console.WriteLine($"Максимальная подстрока начинающаяся и заканчивающаяся на гласную: {result}");
 
             }
             else

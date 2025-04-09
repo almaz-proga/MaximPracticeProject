@@ -66,6 +66,61 @@ namespace practice
             }
             return result;
         }
+        static void QuickSort(ref char[] array, int low, int high)
+        {
+            if (low < high)
+            {
+                int pivotindex = Partition(ref array, low, high);
+                QuickSort(ref array, low, pivotindex - 1);
+                QuickSort(ref array, pivotindex + 1, high);
+            }
+
+        }
+        static int Partition(ref char[] array, int low, int high)
+        {
+            char pivot = array[high];
+            int i = low - 1;
+
+            for (int j = low; j < high; j++)
+            {
+                if (array[j] < pivot)
+                {
+                    i++;
+                    char temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+            char tempi = array[i + 1];
+            array[i + 1] = array[high];
+            array[high] = tempi;
+            return i + 1;
+        }
+        static string TreeSort(string newword)
+        {
+            SortedDictionary<char, int> charCounts = new SortedDictionary<char, int>();
+
+            foreach (char c in newword)
+            {
+                if (charCounts.ContainsKey(c))
+                { 
+                    charCounts[c]++;
+                }
+                else 
+                {
+                    charCounts[c] = 1; 
+                }
+            }
+
+            var result = new System.Text.StringBuilder();
+            foreach (var pair in charCounts)
+            {
+                result.Append(pair.Key, pair.Value);
+            }
+
+            return result.ToString();
+        }
+
         static void Main(string[] args)
         {
             Console.Write("Введите строку: ");
@@ -94,21 +149,39 @@ namespace practice
                     }
                     newword += word;
                 }
-                Console.WriteLine($"обработанная строка: {newword}");
+                Console.Write("Выберите метод сортировки новой строки (1 - быстрая сортировка, 2 - сортировка деревом): ");
+
+                int choice = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                char[] array = newword.ToCharArray();
+
+                Console.WriteLine($"обработанная строка: {newword}\n");
+
                 var charcount = CharCount(newword);
-                Console.WriteLine("Кол-во повторяющихся символов: ");
+                Console.WriteLine("Кол-во повторяющихся символов:");
                 foreach (var pair in charcount)
                 {
                     Console.WriteLine($"{pair.Key}: {pair.Value}");
                 }
-                string result = MaxSubstring(newword);
-                Console.WriteLine($"Максимальная подстрока начинающаяся и заканчивающаяся на гласную: {result}");
 
+                string result = MaxSubstring(newword);
+                Console.WriteLine($"Максимальная подстрока начинающаяся и заканчивающаяся на гласную: {result}\n");
+                Console.Write("Отсортированная обработанная строка: ");
+
+                if (choice == 1) 
+                {
+                    QuickSort(ref array, 0, array.Length - 1);
+                    Console.WriteLine(new string(array));
+                }
+                else if(choice == 2)
+                {   
+                    string newwordsorted = TreeSort(newword);
+                    Console.WriteLine(newwordsorted);
+                }
             }
             else
             {
                 Console.WriteLine("В строке содержатся недопустимые символы: " + string.Join(", ", invalidchars));
-    
             }
 
             Console.ReadLine();

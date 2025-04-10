@@ -5,3 +5,15 @@ C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.csproj.Assembly
 C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.csproj.CoreCompileInputs.cache
 C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.exe
 C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.pdb
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Buffers.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.IO.Pipelines.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Memory.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Text.Json.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\almaz\source\repos\practice\practice\bin\Debug\System.ValueTuple.dll
+C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.exe.config
+C:\Users\almaz\source\repos\practice\practice\obj\Debug\practice.csproj.CopyComplete

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace practice
 {
@@ -120,6 +123,36 @@ namespace practice
 
             return result.ToString();
         }
+        static int GetRandomIndex(int max)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string url = $"https://randomnumberapi.com/api/v1.0/random?min=0&max={max}&count=1";
+                    HttpResponseMessage response = client.GetAsync(url).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = response.Content.ReadAsStringAsync().Result;
+
+                        json = json.Trim('[', ']');
+                        int number = int.Parse(json);
+                        return number;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка получении числа с API. Используем локальную генерацию");
+                        return new Random().Next(0, max);
+                    }
+                }
+            }
+            catch
+            {
+                Console.WriteLine("API недоступен. Используем локальную генерацию");
+                return new Random().Next(0, max);
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -178,6 +211,11 @@ namespace practice
                     string newwordsorted = TreeSort(newword);
                     Console.WriteLine(newwordsorted);
                 }
+                
+                int randomindex = GetRandomIndex(newword.Length);
+                Console.WriteLine($"\nИндекс - {randomindex}");
+                newword = newword.Remove(randomindex, 1);
+                Console.WriteLine($"Обрезанная строка: {newword}");
             }
             else
             {
